@@ -50,7 +50,7 @@ public class ClienteDAOImpl implements ClienteDAO {
     }
 
     @Override
-    public Clientes buscar(long cui) {
+    public Clientes buscarPorId(long cui) {
         return null; 
     }
 
@@ -63,4 +63,6 @@ public class ClienteDAOImpl implements ClienteDAO {
     public boolean eliminar(long cui) {
         return false; 
     }
+
+    
 }

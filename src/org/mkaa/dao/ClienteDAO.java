@@ -9,7 +9,9 @@ public interface ClienteDAO {
     //CRUD
     boolean insertar(Clientes cliente);
     List<Clientes> listarTodos();
-    Clientes buscar(long cui);
+
     boolean actualizar(Clientes cliente);
     boolean eliminar(long cui);
+
+    public Clientes buscarPorId(long cui);
 }

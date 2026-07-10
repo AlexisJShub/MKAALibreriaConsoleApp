@@ -1,8 +1,5 @@
 package org.mkaa.view;
 
-
-
- 
 import java.util.List;
 import java.util.Scanner;
 import org.mkaa.model.Clientes;
