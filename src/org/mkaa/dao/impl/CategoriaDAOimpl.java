@@ -11,7 +11,7 @@ import java.sql.CallableStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
  
-public class CategoriaDAOimpl implements CategoriaDAO {
+public class CategoriaDAOImpl implements CategoriaDAO {
     public List<Categoria> ListarTodos() {
         //crear lista 
         List<Categoria>  categoria = new ArrayList<>();//null 
