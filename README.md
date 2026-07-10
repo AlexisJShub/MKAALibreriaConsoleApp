@@ -1,13 +1,13 @@
 # PROYECTO DE LIBRERIA CON CONEXION A BASE DE DATOS
 
 ## DESCRIPCION
-[Aquí puedes agregar una breve descripción de qué hace tu proyecto, las tecnologías utilizadas y cómo ejecutarlo.]
+Es una molitica, mvc y dao sigue cumpliendo el SOLID, Responsabilidad Unica
 
 ## ESTRUCTURA DEL PROYECTO
 
 ```text
-MKAALibreriaConsoleApp
-|---src/org/mkaalibreriaconsoleapp
+LibreriaConsoleApp
+|---src/org/alvarocalderon
     |-- controller
     |   |--- CategoriaController.java
     |-- model
@@ -15,5 +15,15 @@ MKAALibreriaConsoleApp
     |-- system
     |   |--- Princiapal.java
     |-- view
-        |--- MenuPrincipal.java
-        |--- CategoriaView.java
+    |   |--- MenuPrincipal.java
+    |   |--- CategoriaView.java
+    |-- util
+        |--- Conexion.java
+
+Autores
+/Joaquin Sanchez | Fundación Kinal/
+/Manuel Tavico | Fundación Kinal/
+/Kevin Tuy | Fundación Kinal/
+/Andres Aquino | Fundación Kinal/
+
+.md mark down - formato de los artefactos que genera los LLM(IA)
