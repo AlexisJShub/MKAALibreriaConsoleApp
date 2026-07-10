@@ -11,6 +11,14 @@ public interface CategoriaDAO {
     Categoria buscar(long cui);
     boolean actualizar(Categoria categoria);
     boolean eliminar(long cui);
+
+    public boolean crear(Categoria nuevaCategoria);
+
+    public List<Categoria> listarTodos();
+
+    public Categoria buscarPorId(long idCategoria);
+
+    public boolean modificar(Categoria categoria);
     
     
 }

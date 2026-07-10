@@ -58,6 +58,10 @@ public class CategoriaConsoleView {
 
     }
 
+    public long solicitarIdCategoria() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }
  
  
