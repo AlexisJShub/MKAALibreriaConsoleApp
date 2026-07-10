@@ -1,6 +1,7 @@
 package org.mkaa.view;
 
 import java.util.Scanner;
+import org.mkaa.controller.EditorialController; // Conecta con tu controlador de editoriales
 
 public class MenuPrincipal {
 
@@ -14,30 +15,31 @@ public class MenuPrincipal {
             System.out.println("1. Modulo Cliente");
             System.out.println("2. Modulo Autores");
             System.out.println("3. Modulo Categorias");
-            System.out.println("4. Modulo Editoriales");
+            System.out.println("4. Modulo Editoriales"); // ¡Corregido el paréntesis aquí!
             System.out.println("5. Salir");
-            
-            // Se recomienda usar un try-catch aquí en el futuro para evitar errores si el usuario no ingresa un número
-            opcion = Integer.parseInt(leer.nextLine());
+
+            try {
+                opcion = Integer.parseInt(leer.nextLine());
+            } catch (NumberFormatException e) {
+                opcion = 0;
+            }
 
             switch (opcion) {
-                case 1:
-                    System.out.println("Cliente");
-                    break;
-                case 2:
-                    System.out.println("Autor");
-                    break;
-                case 3:
-                    System.out.println("Categoria");
-                    break;
-                case 4:
-                    System.out.println("Editoriales");
-                    break;
-                case 5:
-                    System.out.println("Adiós Vaquero!");
-                    break;
-                default:
-                    System.out.println("NO existe esta opción");
+                case 1 -> System.out.println("Modulo Cliente");
+                case 2 -> System.out.println("Modulo Autores");
+                case 3 -> System.out.println("Modulo Categorias");
+                case 4 -> {
+                    System.out.println("Abriendo Modulo Editoriales...\n");
+                    
+                    // Instanciamos tu vista y controlador de editoriales
+                    EditorialConsoleView vistaEditorial = new EditorialConsoleView();
+                    EditorialController controladorEd = new EditorialController(vistaEditorial);
+                    
+                    // Le cede el control a tu sub-menú de editoriales
+                    controladorEd.iniciar();
+                }
+                case 5 -> System.out.println("Adiós Vaquero!");
+                default -> System.out.println("NO existe esta opción");
             }
         } while (opcion != 5);
     }

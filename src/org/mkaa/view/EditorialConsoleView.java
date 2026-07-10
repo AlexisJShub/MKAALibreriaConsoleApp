@@ -1,4 +1,4 @@
-package org.mkaa.view; // Asegúrate de que este paquete coincida con la carpeta de tus vistas
+package org.mkaa.view;
 
 import java.util.Scanner;
 import java.util.List;
@@ -8,14 +8,13 @@ public class EditorialConsoleView {
 
     private final Scanner leer = new Scanner(System.in);
 
-    // Método para mostrar las opciones de este menú
     public int mostrarMenu() {
         int opcion;
 
         System.out.println("-------Gestion de Editoriales---------");
         System.out.println("-1 CREAR NUEVA EDITORIAL-");
         System.out.println("-2 LISTAR EDITORIALES-");
-        System.out.println("-3 BUSCAR EDITORIAL POR ID-");
+        System.out.println("-3 BUSCAR EDITORIAL POR NIT-");
         System.out.println("-4 MODIFICAR EDITORIAL-");
         System.out.println("-5 ELIMINAR EDITORIAL-");
         System.out.println("-6 REGRESAR MENU PRINCIPAL-");
@@ -24,19 +23,14 @@ public class EditorialConsoleView {
         try {
             opcion = Integer.parseInt(leer.nextLine());
         } catch (NumberFormatException e) {
-            opcion = 0; // Por si ingresan una letra por error
+            opcion = 0;
         }
         return opcion;
     }
 
-    public int solicitarIdEditorial() {
-        System.out.println("ingrese el ID de la editorial");
-        try {
-            return Integer.parseInt(leer.nextLine());
-        } catch (NumberFormatException e) {
-            System.out.println("ID inválido, se enviará 0");
-            return 0;
-        }
+    public String solicitarNitEditorial() {
+        System.out.println("ingrese el NIT de la editorial");
+        return leer.nextLine();
     }
 
     public String solicitarNombreEditorial() {
@@ -54,26 +48,25 @@ public class EditorialConsoleView {
         return leer.nextLine();
     }
 
-    // Mostrar el detalle de una EDITORIAL
     public void mostrarEditorial(Editorial editorial) {
         System.out.println("--- DATOS DE LA EDITORIAL ---");
-        System.out.println("ID: " + editorial.getIdEditorial()); // Ajusta si el getter se llama diferente
+        System.out.println("NIT: " + editorial.getNit()); 
         System.out.println("NOMBRE: " + editorial.getNombreEditorial());
         System.out.println("DIRECCIÓN: " + editorial.getDireccion());
         System.out.println("TELÉFONO: " + editorial.getTelefono());
     }
 
-    // Mostrar la lista de EDITORIALES
     public void mostrarListaEditoriales(List<Editorial> editoriales) {
         System.out.println("\n-- LISTA DE EDITORIALES ---");
         
-        // Encabezado formateado con espaciados fijos
-        System.out.printf("%-10s %-25s %-30s %-15s\n", "ID", "NOMBRE", "DIRECCIÓN", "TELÉFONO");
+        // Cabecera de la tabla
+        System.out.printf("%-10s %-25s %-30s %-15s\n", "NIT", "NOMBRE", "DIRECCIÓN", "TELÉFONO");
         System.out.println("--------------------------------------------------------------------------------");
 
         for (Editorial editorial : editoriales) {
-            System.out.printf("%-10d %-25s %-30s %-15s\n", 
-                editorial.getIdEditorial(), 
+            // %-10s ahora acepta el NIT perfectamente sin causar errores
+            System.out.printf("%-10s %-25s %-30s %-15s\n", 
+                editorial.getNit(), 
                 editorial.getNombreEditorial(), 
                 editorial.getDireccion(), 
                 editorial.getTelefono()

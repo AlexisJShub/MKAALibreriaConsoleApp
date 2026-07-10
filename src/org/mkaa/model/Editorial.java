@@ -1,33 +1,27 @@
 package org.mkaa.model;
 
 public class Editorial {
-    
-    // Atributos de clase
-    private int idEditorial;
+    private String nit; // Cambiado de int a String para reflejar tu base de datos
     private String nombreEditorial;
     private String direccion;
     private String telefono;
-    private String correoElectronico;
 
-    // Constructores
     public Editorial() {
     }
 
-    public Editorial(int idEditorial, String nombreEditorial, String direccion, String telefono) {
-        this.idEditorial = idEditorial;
+    public Editorial(String nit, String nombreEditorial, String direccion, String telefono) {
+        this.nit = nit;
         this.nombreEditorial = nombreEditorial;
         this.direccion = direccion;
         this.telefono = telefono;
-        this.correoElectronico = correoElectronico;
     }
 
-    // Getters and Setters
-    public int getIdEditorial() {
-        return idEditorial;
+    public String getNit() {
+        return nit;
     }
 
-    public void setIdEditorial(int idEditorial) {
-        this.idEditorial = idEditorial;
+    public void setNit(String nit) {
+        this.nit = nit;
     }
 
     public String getNombreEditorial() {
@@ -52,13 +46,5 @@ public class Editorial {
 
     public void setTelefono(String telefono) {
         this.telefono = telefono;
-    }
-
-    public String getCorreoElectronico() {
-        return correoElectronico;
-    }
-
-    public void setCorreoElectronico(String correoElectronico) {
-        this.correoElectronico = correoElectronico;
     }
 }

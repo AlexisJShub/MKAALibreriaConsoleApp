@@ -1,17 +1,14 @@
 package org.mkaa.system;
+
 import org.mkaa.view.MenuPrincipal;
 
-/**
- *
- * @author informatica
- */
 public class Main {
 
- 
     public static void main(String[] args) {
-       MenuPrincipal menu = new MenuPrincipal();
-       menu.iniciar();
-       
+        // Creamos la instancia del menú global
+        MenuPrincipal menu = new MenuPrincipal();
+        
+        // Arrancamos la aplicación desde el inicio
+        menu.iniciar();
     }
-    
 }
