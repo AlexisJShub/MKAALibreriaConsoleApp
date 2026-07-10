@@ -1,7 +1,7 @@
 # PROYECTO DE LIBRERIA CON CONEXION A BASE DE DATOS
 
 ## DESCRIPCION
-Es una molitica, mvc y dao sigue cumpliendo el SOLID, Responsabilidad Unica
+Proyecto de trabajo colaborativo de taller en kinal
 
 ## ESTRUCTURA DEL PROYECTO
 
