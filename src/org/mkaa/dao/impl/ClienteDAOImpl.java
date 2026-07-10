@@ -1,68 +1,72 @@
 package org.mkaa.dao.impl;
  
-import org.mkaa.util.Conexion;
+import org.mkaa.util.Conexion; 
+import org.mkaa.model.Cliente; 
 import org.mkaa.dao.ClienteDAO;
-import org.mkaa.model.Clientes;
-
-import java.util.List;
-import java.util.ArrayList;
-import java.sql.Connection;
+ 
 import java.sql.CallableStatement;
+import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.ResultSet; 
-
-public class ClienteDAOImpl implements ClienteDAO {
-
+import java.util.ArrayList;
+import java.util.List;
+import java.sql.PreparedStatement;  
+import java.sql.ResultSet;
+ 
+public class ClienteDAOImpl implements ClienteDAO{
+ 
     @Override
-    public boolean insertar(Clientes cliente) {
+    public boolean insertar(Cliente cliente) {
         return false; 
     }
-
+ 
     @Override
-    public List<Clientes> listarTodos() {
-        // crear lista
-        List<Clientes> clientes = new ArrayList<>(); 
-        // crear nuestra consulta 
+    public List<Cliente> listarTodos() {
+        //crear lista
+        List<Cliente> clientes = new ArrayList<>(); 
+        //crear nuestra consulta 
         String consulta = "{call sp_listarclientes()}"; 
-
-        // try with resources -> cierra automáticamente los recursos al terminar
-        try (Connection conexion = Conexion.getInstancia().conectar();
-             CallableStatement consultaCall = conexion.prepareCall(consulta); 
-             ResultSet tablaResultado = consultaCall.executeQuery()) {
-
-            // ciclo para rellenar mi lista 
-            while (tablaResultado.next()) {
-                // Nota: Asegúrate de que tu clase Clientes tenga un constructor que acepte estos 4 parámetros
-                clientes.add(new Clientes(
-                        tablaResultado.getLong("cui"),
-                        tablaResultado.getString("nombreCliente"),
-                        tablaResultado.getString("apellidoCliente"),
-                        tablaResultado.getString("correoElectronico")
-                )); 
-            }  
-
-        } catch (SQLException e) {
-            System.err.println("Error al listar Clientes: " + e.getMessage()); 
+        //mapear el resultado de la consulta a objeto y lo agregamos a lista 
+        //try with resources  / intentar con recursos -> cierra el recurso al completar el intento 
+         try  (Connection conexion = Conexion.getInstancia().conectar();
+                CallableStatement consultaCall = conexion.prepareCall(consulta); 
+                ResultSet tablaResultado = consultaCall.executeQuery(); ) {
+             //ciclo para rellenar mi lista 
+             //verificar cada fila del resultado set 
+             //va a guardar cada celda dentro de cada atributo de mi objeto 
+             while(tablaResultado.next()) {
+                  clientes.add(new Cliente(
+                                tablaResultado.getLong("cui"),
+                                tablaResultado.getString("nombre_cliente"),
+                                tablaResultado.getString("apellido_cliente"),
+                                tablaResultado.getString("correo_electronico")
+                  )); 
+                  }  
+        }  catch (SQLException e ) {
+              System.err.println("Error al listar Clientes: " + e.getMessage()); 
         }
 
-        // retornamos la lista 
+        //retornamos una lista 
         return clientes; 
     }
-
+ 
     @Override
-    public Clientes buscarPorId(long cui) {
+    public Cliente buscar(long cui) {
+        //objeto
+        Cliente cliente; 
+
+        //consulta 
+        String consulta = "{call sp_buscarcliente(?)}"; 
         return null; 
     }
-
+ 
     @Override
-    public boolean actualizar(Clientes cliente) {
+    public boolean actualizar(Cliente cliente) {
         return false; 
     }
-
+ 
     @Override
     public boolean eliminar(long cui) {
         return false; 
     }
-
-    
 }
+ 
