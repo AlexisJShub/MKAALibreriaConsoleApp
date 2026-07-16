@@ -1,7 +1,7 @@
-package org.mkaa.view;
-
+package org.mkaa.system;
 import java.util.Scanner; 
 import org.mkaa.controller.CategoriaController;
+import org.mkaa.view.CategoriaConsoleView;
 
 public class MenuPrincipal {
 Scanner leer = new Scanner(System.in);
