@@ -1,24 +1,24 @@
 package org.mkaa.dao.impl;
- 
+
 import org.mkaa.util.Conexion; 
 import org.mkaa.model.Cliente; 
-import org.mkaa.dao.ClienteDAO;
- 
+import org.mkaa.dao.ClienteDAO; 
+
 import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.sql.PreparedStatement;  
-import java.sql.ResultSet;
- 
+import java.sql.ResultSet; 
+
 public class ClienteDAOImpl implements ClienteDAO{
- 
+
     @Override
     public boolean insertar(Cliente cliente) {
         return false; 
     }
- 
+
     @Override
     public List<Cliente> listarTodos() {
         //crear lista
@@ -42,31 +42,64 @@ public class ClienteDAOImpl implements ClienteDAO{
                   )); 
                   }  
         }  catch (SQLException e ) {
-              System.err.println("Error al listar Clientes: " + e.getMessage()); 
+              System.err.print("Error al listar Clientes: " + e.getMessage()); 
         }
-
+            
         //retornamos una lista 
         return clientes; 
     }
- 
+
     @Override
     public Cliente buscar(long cui) {
         //objeto
-        Cliente cliente; 
-
+        Cliente cliente = new Cliente();
+        
         //consulta 
-        String consulta = "{call sp_buscarcliente(?)}"; 
-        return null; 
+        String consultaSQL = "{call sp_buscarcliente(?)}"; 
+        //mapeamos el ResultSet al objeto(Cliente) segun sus atributos y la fila devuelta 
+        try (Connection conexion = Conexion.getInstancia().conectar(); 
+                    CallableStatement consultaCall = conexion.prepareCall(consultaSQL);){
+              consultaCall.setLong(1,cui); 
+              ResultSet tablaResultado = consultaCall.executeQuery(); 
+              if (tablaResultado.next()) {
+                  cliente.setCui(tablaResultado.getLong("cui")); 
+                  cliente.setNombreCliente(tablaResultado.getString("nombre_cliente")); 
+                  cliente.setApellidoCliente(tablaResultado.getString("apellido_cliente")); 
+                  cliente.setCorreoElectronico(tablaResultado.getString("correo_electronico")); 
+              }
+              else {
+                  return null; 
+              }
+        }catch (SQLException e) {
+            System.err.print("Error al buscar Clientes: " + e.getMessage()); 
+        }
+        //retornamos el objeto
+        return cliente; 
     }
- 
+
     @Override
     public boolean actualizar(Cliente cliente) {
         return false; 
     }
- 
+
     @Override
     public boolean eliminar(long cui) {
-        return false; 
+     String consultaSQL = "{call sp_eliminarcliente(?)}";
+    try ( Connection conexion = Conexion.getInstancia().conectar();
+                     CallableStatement consultaCall = conexion.prepareCall(consultaSQL)
+         ){
+       consultaCall.setLong(1,cui); 
+       int filasAfectadas = consultaCall.executeUpdate(); 
+       if (filasAfectadas > 0) { 
+           System.out.println("Cliente eliminado con exito");
+           return true; 
+       } else {
+           System.out.println("No se encontro ningun cliente con ese ID");
+         return false;   
+       }
+       }catch (SQLException e) { 
+             System.out.println("Error al elminiar cliente " + e.getMessage());
+             return false; 
+       }
     }
 }
- 
