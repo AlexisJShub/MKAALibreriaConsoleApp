@@ -22,7 +22,7 @@ public class CategoriaDAOImpl implements CategoriaDAO{
         //crear lista 
         List<Categoria>  categoria = new ArrayList<>();//null 
         //crear nuestras consultas 
-        String consulta = "{ call sp_listar_categoria()}";
+        String consulta = "{ call sp_listarcategorias()}";
         //maperar el resultado de la consulta a objeto y lo agregaamos a la lista 
         // Try with resources / intentar con recursos -----> cierra el recurso al completar el intetno
         try (Connection conexion = Conexion.getInstancia().conectar();
@@ -34,8 +34,8 @@ public class CategoriaDAOImpl implements CategoriaDAO{
                 //va a guardar cada celda dentro de cada atributo de objeto
            while (tablaResultado.next()) {
                categoria.add(new Categoria(
-                               tablaResultado.getInt("ID"),
-                               tablaResultado.getString("CATEGORIA")          
+                               tablaResultado.getInt("id_categoria"),
+                               tablaResultado.getString("nombre_categoria")          
                ));
                
            }
