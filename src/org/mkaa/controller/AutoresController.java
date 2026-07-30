@@ -130,4 +130,7 @@ public class AutoresController {
             vista.mostrarMensaje("Error: El autor con ID " + id + " no existe.");
         }
     }
+    
+    // agrega esta validacion con try catch, aqui esta el error a capturar: java.lang.NumberFormatException. De preferencia hace un globalExceptionHandler para solo mandar a llamar a la excepcion y no tener que poner los try a cada rato
+    
 }
