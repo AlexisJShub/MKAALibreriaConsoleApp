@@ -9,6 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import org.mkaa.dao.AutoresDAO;
 import org.mkaa.dao.impl.AutoresDAOImpl;
@@ -18,20 +19,22 @@ import org.mkaa.system.Main;
 public class AutoresFXController implements Initializable {
 
     @FXML
-    private TextField txtCui;
+    private TextField txtIdAutor;
     @FXML
     private TextField txtNombre;
     @FXML
     private TextField txtApellido;
     @FXML
-    private TextField txtCorreo;
+    private TextField txtNacionalidad;
+    @FXML
+    private TextArea txtBiografia;
     @FXML
     private Label lblMensaje;
     @FXML
-    private TableView<Autoresr> tablaClientes;//Tabla de entidad: cliente
+    private TableView<Autores> tablaAutores;//Tabla de entidad: autor
 
-    private final AutoresDAO clienteDAO = new AutoresDAOImpl();
-    private final ObservableList<Autores> listaClientes = FXCollections.observableArrayList();//Entidad:Cliente
+    private final AutoresDAO autoresDAO = new AutoresDAOImpl();
+    private final ObservableList<Autores> listaAutores = FXCollections.observableArrayList();//Entidad:Autor
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -40,18 +43,19 @@ public class AutoresFXController implements Initializable {
     }
 
     private void cargarTabla() {
-        listaClientes.setAll(clienteDAO.listarTodos());
-        tablaClientes.setItems(listaClientes);
+        listaAutores.setAll(autoresDAO.listarTodos());
+        tablaAutores.setItems(listaAutores);
     }
 
     private void seleccionarFila() {
-        tablaClientes.getSelectionModel().selectedItemProperty().addListener(
+        tablaAutores.getSelectionModel().selectedItemProperty().addListener(
                 (obs, oldSelection, newSelection) -> {
                     if (newSelection != null) {
-                        txtCui.setText(String.valueOf(newSelection.getCui()));
-                        txtNombre.setText(newSelection.getNombre());
-                        txtApellido.setText(newSelection.getApellido());
-                        txtCorreo.setText(newSelection.getCorreoElectronico());
+                        txtIdAutor.setText(String.valueOf(newSelection.getIdAutor()));
+                        txtNombre.setText(newSelection.getNombreAutor());
+                        txtApellido.setText(newSelection.getApellidoAutor());
+                        txtNacionalidad.setText(newSelection.getNacionalidad());
+                        txtBiografia.setText(newSelection.getBiografia());
                     }
                 });
     }
@@ -59,31 +63,81 @@ public class AutoresFXController implements Initializable {
     @FXML
     private void handleGuardar() {
         try {
-            if (txtId.getText().isEmpty() || txtNombre.getText().isEmpty()
-                    || txtApellido.getText().isEmpty() || txtNacionalidad.getText().isEmpty())
-                        || txtBiografia.getText().isEmpty()) {
-                mostrarError("Todos los campos son obligatorios.");
+            if (txtNombre.getText().isEmpty() || txtApellido.getText().isEmpty()) {
+                mostrarError("Nombre y Apellido son obligatorios.");
                 return;
             }
 
-            Autores autores = new Autores();
-            autores.id_autor(Long.parseLong(txtId.getText().trim()));
-            autores.nombre_autor(txtNombre.getText().trim());
-            autores.apellido_autor(txtApellido.getText().trim());
-            autores.nacionalidad(txtNacionalidad.getText().trim());
-            autores.biografia(txtBiografia.getText().trim());
-            
-            if (autoresDAO.crear(autores)) {
+            Autores autor = new Autores();
+            autor.setNombreAutor(txtNombre.getText().trim());
+            autor.setApellidoAutor(txtApellido.getText().trim());
+            autor.setNacionalidad(txtNacionalidad.getText().trim());
+            autor.setBiografia(txtBiografia.getText().trim());
+
+            if (autoresDAO.insertar(autor)) {
                 lblMensaje.setText("Autor registrado exitosamente.");
                 cargarTabla();
                 limpiarFormulario();
             } else {
                 mostrarError("No se pudo registrar el autor.");
             }
-        } catch (NumberFormatException e) {
-            mostrarError("El Id debe ser un número válido.");
         } catch (Exception e) {
             mostrarError("Error al guardar: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handleActualizarRegistro() {
+        try {
+            if (txtIdAutor.getText().isEmpty()) {
+                mostrarError("Seleccione un autor de la tabla para modificar.");
+                return;
+            }
+            if (txtNombre.getText().isEmpty() || txtApellido.getText().isEmpty()) {
+                mostrarError("Nombre y Apellido son obligatorios.");
+                return;
+            }
+
+            Autores autor = new Autores();
+            autor.setIdAutor(Integer.parseInt(txtIdAutor.getText().trim()));
+            autor.setNombreAutor(txtNombre.getText().trim());
+            autor.setApellidoAutor(txtApellido.getText().trim());
+            autor.setNacionalidad(txtNacionalidad.getText().trim());
+            autor.setBiografia(txtBiografia.getText().trim());
+
+            if (autoresDAO.actualizar(autor)) {
+                lblMensaje.setText("Autor actualizado correctamente.");
+                cargarTabla();
+                limpiarFormulario();
+            } else {
+                mostrarError("No se pudo actualizar el autor.");
+            }
+        } catch (NumberFormatException e) {
+            mostrarError("El ID del autor debe ser un número válido.");
+        } catch (Exception e) {
+            mostrarError("Error al actualizar: " + e.getMessage());
+        }
+    }
+
+    @FXML
+    private void handleEliminar() {
+        try {
+            if (txtIdAutor.getText().isEmpty()) {
+                mostrarError("Seleccione un autor de la tabla para eliminar.");
+                return;
+            }
+            int id = Integer.parseInt(txtIdAutor.getText().trim());
+            if (autoresDAO.eliminar(id)) {
+                lblMensaje.setText("Autor eliminado correctamente.");
+                cargarTabla();
+                limpiarFormulario();
+            } else {
+                mostrarError("No se pudo eliminar el autor.");
+            }
+        } catch (NumberFormatException e) {
+            mostrarError("El ID del autor debe ser un número válido.");
+        } catch (Exception e) {
+            mostrarError("Error al eliminar: " + e.getMessage());
         }
     }
 
@@ -109,11 +163,11 @@ public class AutoresFXController implements Initializable {
     }
 
     private void limpiarFormulario() {
-        txtId.clear();
+        txtIdAutor.clear();
         txtNombre.clear();
         txtApellido.clear();
         txtNacionalidad.clear();
-        txtBiografa.clear();
+        txtBiografia.clear();
     }
 
     private void mostrarError(String mensaje) {

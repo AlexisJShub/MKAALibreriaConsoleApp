@@ -5,15 +5,14 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import org.mkaa.system.Main;
 
-//falta el extends initilize
 public class MenuPrincipalController {
 
     @FXML
     private void handleAutores() {
         try {
-            Main.cambiarVista("/org/key/view/Autores.View.fxml");
+            Main.cambiarVista("/org/mkaa/view/AutoresView.fxml");
         } catch (Exception e) {
-            mostrarError("Error al cargar la vista de clientes:\n" + e.getMessage());
+            mostrarError("Error al cargar la vista de autores:\n" + e.getMessage());
         }
     }
 
