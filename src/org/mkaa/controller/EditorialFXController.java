@@ -28,10 +28,10 @@ public class EditorialFXController implements Initializable {
     @FXML
     private Label lblMensaje;
     @FXML
-    private TableView<Cliente> tablaClientes;//Tabla de entidad: cliente
+    private TableView<EditorialFXController> tablaClientes;//Tabla de entidad: cliente
 
-    private final ClienteDAO clienteDAO = new ClienteDAOImpl();
-    private final ObservableList<Cliente> listaClientes = FXCollections.observableArrayList();//Entidad:Cliente
+    private final EditorialDAO clienteDAO = new EditorialDAOImpl();
+    private final ObservableList<Editorial> listaClientes = FXCollections.observableArrayList();//Entidad:Cliente
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
