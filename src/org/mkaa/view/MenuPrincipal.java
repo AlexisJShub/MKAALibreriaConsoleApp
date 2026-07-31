@@ -1,10 +1,11 @@
 package org.mkaa.view;
 
-import java.util.Scanner; 
+import java.util.Scanner;
 import org.mkaa.controller.CategoriaController;
 
 public class MenuPrincipal {
-Scanner leer = new Scanner(System.in);
+    Scanner leer = new Scanner(System.in);
+    
     public void iniciar(){
         int opcion = 0;
         do {
@@ -12,31 +13,33 @@ Scanner leer = new Scanner(System.in);
             System.out.println("1. Modulo Cliente");
             System.out.println("2. Modulo Autores");
             System.out.println("3. Modulo Categorias");
-            System.out.println("4. Modulo Editoriales");
-            System.out.println("0. Salir");
+            System.out.println("5. Modulo Editoriales");
+            System.out.println("4. Salir");
             opcion = Integer.parseInt(leer.nextLine());
+            
             switch (opcion) {
                 case 1:
-                    System.out.println("Categoria");                
+                        System.out.println("Categoria");
+                        CategoriaConsoleView vistaCategoria = new CategoriaConsoleView();
+                        CategoriaController controladorCategoria = new CategoriaController(vistaCategoria);
+                        controladorCategoria.iniciar();
                     break;
                 case 2:
                     System.out.println("Autor");
                     break;
                 case 3:
                     System.out.println("Categoria");
-                    CategoriaConsoleView visitaCategoria = new CategoriaConsoleView(); 
-                    CategoriaController controladorCategoria = new CategoriaController(visitaCategoria);
-                    controladorCategoria.iniciar(); 
                     break;
-                case 0:
+                case 4:
                     System.out.println("Adiós Vaquero!");
                     break;   
-                case 4:
+                case 5:
                     System.out.println("Editoriales");
                     break;
                 default:
                     System.out.println("NO existe esta opción");
             }
-        } while (opcion != 0);
+            
+        } while (opcion != 4);
     }
 }

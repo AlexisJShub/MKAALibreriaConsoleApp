@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.mkaa.controller.CategoriaFXController">
+    <padding><Insets top="20" right="20" bottom="20" left="20" /></padding>
+
+    <left>
+        <VBox spacing="10" minWidth="300" maxWidth="300">
+            <padding><Insets right="20" /></padding>
+            <Label text="Registrar Categoria" style="-fx-font-size: 18; -fx-font-weight: bold;" />
+            <TextField fx:id="txtId" promptText="Id" />
+            <TextField fx:id="txtNombre" promptText="Nombre" />
+            <HBox spacing="10">
+                <Button text="Guardar" onAction="#handleGuardar" prefWidth="120" />
+                <Button text="Limpiar" onAction="#handleLimpiar" prefWidth="120" />
+            </HBox>
+            <Label fx:id="lblMensaje" />
+        </VBox>
+    </left>
+
+    <center>
+        <VBox spacing="10">
+            <Label text="Lista de Categoria" style="-fx-font-size: 18; -fx-font-weight: bold;" />
+            <TableView fx:id="tablaCategoria">
+                <columns>
+                    <TableColumn text="Id" prefWidth="120">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="id" />
+                        </cellValueFactory>
+                    </TableColumn>
+                    <TableColumn text="Nombre" prefWidth="140">
+                        <cellValueFactory>
+                            <PropertyValueFactory property="nombre" />
+                        </cellValueFactory>
+                    </TableColumn>
+                </columns>
+            </TableView>
+            <HBox spacing="10">
+                <Button text="Actualizar Tabla" onAction="#handleActualizar" />
+                <Button text="Volver al Menú" onAction="#handleVolver" />
+            </HBox>
+        </VBox>
+    </center>
+</BorderPane>

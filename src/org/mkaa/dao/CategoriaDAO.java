@@ -14,4 +14,6 @@ public interface CategoriaDAO {
    Categoria buscarPorId(int idCategoria);
    boolean actualizar(Categoria categoria);
    boolean eliminar(int idCategoria);
+
+    public List<Categoria> listarTodos();
 }

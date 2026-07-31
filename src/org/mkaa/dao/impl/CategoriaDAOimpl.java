@@ -1,7 +1,5 @@
 package org.mkaa.dao.impl;
 
- 
-
 import org.mkaa.util.Conexion; 
 import org.mkaa.model.Categoria;
 import org.mkaa.dao.CategoriaDAO;
@@ -34,7 +32,8 @@ public class CategoriaDAOImpl implements CategoriaDAO{
                 //va a guardar cada celda dentro de cada atributo de objeto
            while (tablaResultado.next()) {
                categoria.add(new Categoria(
-                               tablaResultado.getInt("id_categoria"),
+                               tablaResultado.getInt("id_categoria"
+                                       + ""),
                                tablaResultado.getString("nombre_categoria")          
                ));
                
@@ -68,7 +67,7 @@ public class CategoriaDAOImpl implements CategoriaDAO{
             consultaCall .setInt(1,idCategoria);
             ResultSet tablaResultado = consultaCall.executeQuery();
             if (tablaResultado.next()) {
-                categoria.setIdCategoria(tablaResultado.getInt("ID"));
+                categoria.setIdCategoria(tablaResultado.getInt("Id"));
                 categoria.setNombreCategoria(tablaResultado.getString("CATEGORIA"));
                 return categoria; 
                 }
