@@ -24,7 +24,7 @@ public class AutoresDAOImpl implements AutoresDAO {
             stmt.setString(3, autor.getNacionalidad());
             stmt.setString(4, autor.getBiografia());
             
-            // Si affectedRows es mayor a 0, se insertó correctamente
+            // Si nuestro afected rows es correcto, se insertan correctamente
             int filasAfectadas = stmt.executeUpdate();
             return filasAfectadas > 0;
             

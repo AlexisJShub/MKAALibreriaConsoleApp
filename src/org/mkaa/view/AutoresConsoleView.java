@@ -55,7 +55,7 @@ public class AutoresConsoleView {
         return leer.nextLine(); 
     }
 
-    // Mostrar el detalle de un autor único
+    // Mostrar los detalles de un autor unico
     public void mostrarAutor(Autores autor) {
         System.out.println("_____Datos del Autor_____");
         System.out.println("ID: " + autor.getIdAutor()); 
@@ -66,7 +66,7 @@ public class AutoresConsoleView {
         System.out.println("---\n");
     }
 
-    // Mostrar lista completa de autores en formato tabla
+    // Mostrar lista completa de autores como una tablita
     public void mostrarListaAutores(List<Autores> autores) {
         System.out.println("_____Lista de Autores_____");
         
@@ -85,7 +85,7 @@ public class AutoresConsoleView {
         System.out.println(" --- Fin de autores ---\n");
     }
 
-    // Para mostrar un mensaje personalizado de éxito o error en la consola
+    // Para mostrar un mensaje de error o de ejecucion correcta en la tablita
     public void mostrarMensaje(String mensaje) { 
         System.out.println(mensaje);
     }

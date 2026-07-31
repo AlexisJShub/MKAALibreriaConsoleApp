@@ -7,11 +7,11 @@ public class Autores {
     private String nacionalidad;
     private String biografia;
 
-    // Constructor vacío
+   
     public Autores() {
     }
 
-    // Constructor con todos los parámetros (El que usa tu DAO)
+
     public Autores(int idAutor, String nombreAutor, String apellidoAutor, String nacionalidad, String biografia) {
         this.idAutor = idAutor;
         this.nombreAutor = nombreAutor;
@@ -19,8 +19,6 @@ public class Autores {
         this.nacionalidad = nacionalidad;
         this.biografia = biografia;
     }
-
-    // --- GETTERS Y SETTERS ---
 
     public int getIdAutor() {
         return idAutor;

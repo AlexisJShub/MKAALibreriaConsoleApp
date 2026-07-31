@@ -31,10 +31,10 @@ public class AutoresFXController implements Initializable {
     @FXML
     private Label lblMensaje;
     @FXML
-    private TableView<Autores> tablaAutores;//Tabla de entidad: autor
+    private TableView<Autores> tablaAutores;
 
     private final AutoresDAO autoresDAO = new AutoresDAOImpl();
-    private final ObservableList<Autores> listaAutores = FXCollections.observableArrayList();//Entidad:Autor
+    private final ObservableList<Autores> listaAutores = FXCollections.observableArrayList();
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
