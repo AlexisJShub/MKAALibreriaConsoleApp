@@ -3,17 +3,16 @@ package org.key.controller;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import org.key.system.Main;
+import org.mkaa.system.Main;
 
-//falta el extends initilize
 public class MenuPrincipalController {
 
     @FXML
     private void handleClientes() {
         try {
-            Main.cambiarVista("/org/key/view/ClienteView.fxml");
+            Main.cambiarVista("/org/key/view/EditorialView.fxml");
         } catch (Exception e) {
-            mostrarError("Error al cargar la vista de clientes:\n" + e.getMessage());
+            mostrarError("Error al cargar la vista de Editoriales:\n" + e.getMessage());
         }
     }
 

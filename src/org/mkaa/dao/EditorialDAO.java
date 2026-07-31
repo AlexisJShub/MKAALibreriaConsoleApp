@@ -9,4 +9,6 @@ public interface EditorialDAO {
     public Editorial buscar(String nit);      // Cambiado de long a String
     public boolean actualizar(Editorial editorial);
     public boolean eliminar(String nit);     // Cambiado de long a String
+
+    public boolean eliminar(long cui);
 }

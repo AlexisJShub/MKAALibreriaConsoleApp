@@ -109,4 +109,9 @@ public class EditorialDAOImpl implements EditorialDAO {
             return false;
         }
     }
+
+    @Override
+    public boolean eliminar(long cui) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
