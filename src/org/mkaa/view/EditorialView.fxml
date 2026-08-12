@@ -35,7 +35,7 @@
             </HBox>
             
             <HBox spacing="10">
-                <Button onAction="#handleLimpiar" prefWidth="280" text="Limpiar Campos" />
+                <Button onAction="#handleLimpiar" prefWidth="280" text="Limpiar" />
             </HBox>
             
             <Label fx:id="lblMensaje" wrapText="true" />

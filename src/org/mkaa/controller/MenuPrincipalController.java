@@ -1,4 +1,4 @@
-package org.key.controller;
+package org.mkaa.controller;
 
 import javafx.application.Platform;
 import javafx.fxml.FXML;
@@ -8,9 +8,9 @@ import org.mkaa.system.Main;
 public class MenuPrincipalController {
 
     @FXML
-    private void handleClientes() {
+    private void handleEditoriales() {
         try {
-            Main.cambiarVista("/org/key/view/EditorialView.fxml");
+            Main.cambiarVista("/org/mkaa/view/EditorialView.fxml");
         } catch (Exception e) {
             mostrarError("Error al cargar la vista de Editoriales:\n" + e.getMessage());
         }
