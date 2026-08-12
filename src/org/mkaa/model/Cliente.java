@@ -1,45 +1,50 @@
 package org.mkaa.model;
 
-public class Cliente {
-    private Long cui;
-    private String nombreCliente;
-    private String apellidoCliente;
-    private String correoElectronico;
 
+public class Cliente {
+
+
+    long cui;
+    String nombre;
+    String apellido;
+    String correoElectronico;
+
+ 
     public Cliente() {
     }
-
-    public Cliente(Long cui, String nombreCliente, String apellidoCliente, String correoElectronico) {
+   
+    public Cliente(long cui, String nombre, String apellido, String correoElectronico) {
         this.cui = cui;
-        this.nombreCliente = nombreCliente;
-        this.apellidoCliente = apellidoCliente;
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.correoElectronico = correoElectronico;
     }
 
-    public Long getCui() {
+    public long getCui() {
         return cui;
     }
 
-    public void setCui(Long cui) {
+    public void setCui(long cui) {
         this.cui = cui;
     }
 
-    public String getNombreCliente() {
-        return nombreCliente;
+    public String getNombre() {        
+        return nombre;
     }
 
-    public void setNombreCliente(String nombreCliente) {
-        String nombreClienteMayuscula = nombreCliente.toUpperCase();
-        this.nombreCliente = nombreCliente;
+    public void setNombre(String nombre) {
+
+        String nombreMayusculas = nombre.toUpperCase();
+   
+        this.nombre = nombreMayusculas;
     }
 
-    public String getApellidoCliente() {
-        return apellidoCliente;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setApellidoCliente(String apellidoCliente) {
-        String nombreClienteMayuscula = nombreCliente.toUpperCase();
-        this.apellidoCliente = apellidoCliente;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getCorreoElectronico() {
@@ -48,5 +53,7 @@ public class Cliente {
 
     public void setCorreoElectronico(String correoElectronico) {
         this.correoElectronico = correoElectronico;
-    }    
+    }
+    
+    
 }
