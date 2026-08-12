@@ -15,7 +15,7 @@ import org.mkaa.dao.impl.ClienteDAOImpl;
 import org.mkaa.model.Cliente;
 import org.mkaa.systen.Main;
 
-public class ClienteController implements Initializable {
+public class ClienteViewController implements Initializable {
 
     @FXML
     private TextField txtCui;

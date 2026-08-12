@@ -1,7 +1,7 @@
 package org.mkaa.dao;
 
 import java.util.List;
-import org.Deco.model.Cliente;
+import org.mkaa.model.Cliente;
 
 public interface ClienteDAO {
   
