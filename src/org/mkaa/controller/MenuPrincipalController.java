@@ -6,6 +6,13 @@ import javafx.scene.control.Alert;
 import org.mkaa.system.Main;
 
 public class MenuPrincipalController {
+
+    @FXML
+    private void handleEditoriales() {
+        try {
+            Main.cambiarVista("/org/mkaa/view/EditorialView.fxml");
+        } catch (Exception e) {
+            mostrarError("Error al cargar la vista de Editoriales:\n" + e.getMessage());
     
     @FXML
     private void handleAutores() {
