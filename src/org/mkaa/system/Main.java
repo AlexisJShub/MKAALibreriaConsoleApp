@@ -14,7 +14,7 @@ public class Main extends Application {
     public void start(Stage stage) throws Exception {
         escenarioPrincipal = stage;
         
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mkaa/view/MenuPrincipal.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mkaa/view/InicioSesionView.fxml"));
         Parent root = loader.load();
         
         Scene scene = new Scene(root);

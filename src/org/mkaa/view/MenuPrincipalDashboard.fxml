@@ -60,7 +60,7 @@
                         <Label styleClass="card-title" text="Gestión de Clientes" />
                         <Label styleClass="card-description" text="Registro y catálogo de compradores" />
                     </VBox>
-                    <Button onAction="#handleNoDisponible" prefHeight="38" prefWidth="180" styleClass="btn-card" text="Ingresar a Clientes" />
+                    <Button onAction="#handleClientes" prefHeight="38" prefWidth="180" styleClass="btn-card" text="Ingresar a Clientes" />
                 </VBox>
  
                 <VBox alignment="CENTER" spacing="12" styleClass="module-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
@@ -69,7 +69,7 @@
                         <Label styleClass="card-title" text="Gestión de Autores" />
                         <Label styleClass="card-description" text="Directorio de escritores y biografías" />
                     </VBox>
-                    <Button onAction="#handleNoDisponible" prefHeight="38" prefWidth="180" styleClass="btn-card" text="Ingresar a Autores" />
+                    <Button onAction="#handleAutores" prefHeight="38" prefWidth="180" styleClass="btn-card" text="Ingresar a Autores" />
                 </VBox>
  
                 <VBox alignment="CENTER" spacing="12" styleClass="module-card" GridPane.columnIndex="0" GridPane.rowIndex="1">
@@ -78,7 +78,7 @@
                         <Label styleClass="card-title" text="Categorías" />
                         <Label styleClass="card-description" text="Clasificación de géneros literarios" />
                     </VBox>
-                    <Button onAction="#handleNoDisponible" prefHeight="38" prefWidth="180" styleClass="btn-card" text="Ver Categorías" />
+                    <Button onAction="#handleCategorias" prefHeight="38" prefWidth="180" styleClass="btn-card" text="Ver Categorías" />
                 </VBox>
  
                 <VBox alignment="CENTER" spacing="12" styleClass="module-card" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -87,7 +87,7 @@
                         <Label styleClass="card-title" text="Editoriales" />
                         <Label styleClass="card-description" text="Casas editoras y distribuidores" />
                     </VBox>
-                    <Button onAction="#handleNoDisponible" prefHeight="38" prefWidth="180" styleClass="btn-card" text="Ver Editoriales" />
+                    <Button onAction="#handleEditoriales" prefHeight="38" prefWidth="180" styleClass="btn-card" text="Ver Editoriales" />
                 </VBox>
             </GridPane>
         </VBox>

@@ -175,7 +175,7 @@ public class EditorialFXController implements Initializable {
     @FXML
     private void handleVolver() {
         try {
-            Main.cambiarVista("/org/mkaa/view/MenuPrincipal.fxml");
+            Main.cambiarVista("/org/mkaa/view/MenuPrincipalDashboard.fxml");
         } catch (Exception e) {
             mostrarError("Error al volver al menú: " + e.getMessage());
         }
