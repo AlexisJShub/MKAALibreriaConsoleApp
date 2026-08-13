@@ -10,6 +10,7 @@ public class Main extends Application {
     private static Stage escenarioPrincipal;
     @Override
     public void start(Stage escenarioPrincipal) throws Exception {
+        
         this.escenarioPrincipal = escenarioPrincipal;
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mkaa/view/MenuPrincipal.fxml"));
         Parent root = loader.load();
