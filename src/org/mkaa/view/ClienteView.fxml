@@ -11,12 +11,16 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.mkaa.controller.ClienteController">
-    <padding><Insets top="20" right="20" bottom="20" left="20" /></padding>
+<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.mkaa.controller.ClienteViewController">
+    <padding>
+        <Insets top="20" right="20" bottom="20" left="20" />
+    </padding>
 
     <left>
         <VBox spacing="10" minWidth="300" maxWidth="300">
-            <padding><Insets right="20" /></padding>
+            <padding>
+                <Insets right="20" />
+            </padding>
             <Label text="Registrar Cliente" style="-fx-font-size: 18; -fx-font-weight: bold;" />
             <TextField fx:id="txtCui" promptText="CUI" />
             <TextField fx:id="txtNombre" promptText="Nombre" />
