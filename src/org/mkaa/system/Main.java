@@ -16,7 +16,7 @@ public class Main extends Application {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/org/mkaa/view/ClienteView.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
-        escenarioPrincipal.setTitle("Deco Librería");
+        escenarioPrincipal.setTitle("mkaa Librería");
         escenarioPrincipal.setScene(scene);
         escenarioPrincipal.show();
     }
