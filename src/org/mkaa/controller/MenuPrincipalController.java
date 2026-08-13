@@ -13,6 +13,8 @@ public class MenuPrincipalController {
             Main.cambiarVista("/org/mkaa/view/EditorialView.fxml");
         } catch (Exception e) {
             mostrarError("Error al cargar la vista de Editoriales:\n" + e.getMessage());
+        }
+    }
     
     @FXML
     private void handleAutores() {
