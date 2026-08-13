@@ -1,5 +1,5 @@
 package org.mkaa.controller;
- 
+
 import java.io.IOException;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
@@ -19,43 +19,40 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import org.mkaa.dao.UsuarioDao;
 import org.mkaa.model.Usuario;
- 
+
 public class InicioSesionController implements Initializable {
- 
+
     @FXML private TextField txtUsuario;
     @FXML private PasswordField txtPassword;
     @FXML private Button btnIniciarSesion;
     @FXML private Label lblMensaje;
- 
+
     @FXML private TextField txtNuevoUsuario;
     @FXML private PasswordField txtNuevaPassword;
     @FXML private Label lblMensajeRegistro;
- 
+
     private UsuarioDao usuarioDAO;
- 
+
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         usuarioDAO = new UsuarioDao();
         if (lblMensaje != null) lblMensaje.setText("");
         if (lblMensajeRegistro != null) lblMensajeRegistro.setText("");
     }
- 
+
     @FXML
     public void eventoInicioSesion(ActionEvent evento) {
         String usuario = txtUsuario.getText();
         String password = txtPassword.getText();
- 
+
         if (usuario.isEmpty() || password.isEmpty()) {
             lblMensaje.setText("Por favor, complete todos sus datos.");
             return;
         }
- 
-      
+
         String passwordHash = encriptarSHA256(password);
- 
-      
         Usuario usuarioIniciado = usuarioDAO.iniciarSesion(usuario, passwordHash);
- 
+
         if (usuarioIniciado != null) {
             lblMensaje.setText("Inicio correcto");
             abrirDashBoard(usuarioIniciado);
@@ -63,33 +60,30 @@ public class InicioSesionController implements Initializable {
             lblMensaje.setText("Usuario o contraseña incorrectos");
         }
     }
- 
+
     @FXML
     public void handleAbrirRegistro() {
         cambiarVista("/org/mkaa/view/RegistroUsuarioView.fxml", "Registro de Usuario");
     }
- 
+
     @FXML
     public void handleRegresarLogin() {
         cambiarVista("/org/mkaa/view/InicioSesionView.fxml", "Inicio de Sesión");
     }
- 
+
     @FXML
-    public void handleRegistrarUsuario() {
+    public void handleRegistrar() {
         String usuario = txtNuevoUsuario.getText();
         String password = txtNuevaPassword.getText();
- 
+
         if (usuario.isEmpty() || password.isEmpty()) {
             lblMensajeRegistro.setText("Por favor complete todos los campos.");
             return;
         }
- 
 
         String passwordHash = encriptarSHA256(password);
- 
-
         boolean registrado = usuarioDAO.registrarUsuario(usuario, passwordHash, "admin");
- 
+
         if (registrado) {
             lblMensajeRegistro.setText("¡Usuario registrado con éxito!");
             txtNuevoUsuario.clear();
@@ -98,7 +92,13 @@ public class InicioSesionController implements Initializable {
             lblMensajeRegistro.setText("Error al registrar el usuario.");
         }
     }
-     private String encriptarSHA256(String texto) {
+
+    @FXML
+    public void handleRegistrarUsuario() {
+        handleRegistrar();
+    }
+
+    private String encriptarSHA256(String texto) {
         try {
             MessageDigest digest = MessageDigest.getInstance("SHA-256");
             byte[] hash = digest.digest(texto.getBytes(StandardCharsets.UTF_8));
@@ -114,16 +114,16 @@ public class InicioSesionController implements Initializable {
             return texto;
         }
     }
- 
+
     private void cambiarVista(String rutaFXML, String titulo) {
         try {
             FXMLLoader cargador = new FXMLLoader(getClass().getResource(rutaFXML));
             Parent raiz = cargador.load();
- 
+
             Stage escenario = (Stage) (btnIniciarSesion != null && btnIniciarSesion.getScene() != null ? 
                     btnIniciarSesion.getScene().getWindow() : 
                     txtNuevoUsuario.getScene().getWindow());
- 
+
             escenario.setScene(new Scene(raiz));
             escenario.setTitle(titulo);
             escenario.show();
@@ -131,20 +131,20 @@ public class InicioSesionController implements Initializable {
             System.err.println("Error al cambiar de vista: " + e.getMessage());
         }
     }
- 
+
     private void abrirDashBoard(Usuario usuario) {
         String rutaFXML = "/org/mkaa/view/MenuPrincipalDashboard.fxml";
         String tituloDashboard = "Panel de Administracion";
- 
+
         try {
             FXMLLoader cargadorFXML = new FXMLLoader(getClass().getResource(rutaFXML));
             Parent raiz = cargadorFXML.load();
- 
+
             DashboardController controlado = cargadorFXML.getController();
             if (controlado != null) {
                 controlado.iniciarUsuario(usuario);
             }
- 
+
             Stage escenario = (Stage) btnIniciarSesion.getScene().getWindow();
             escenario.setScene(new Scene(raiz));
             escenario.setTitle(tituloDashboard);
@@ -156,4 +156,3 @@ public class InicioSesionController implements Initializable {
         }
     }
 }
- 
