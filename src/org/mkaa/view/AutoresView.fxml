@@ -5,69 +5,48 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.mkaa.controller.AutoresFXController">
+<BorderPane prefHeight="607.0" prefWidth="1154.0" xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.mkaa.controller.AutoresFXController">
+    <padding>
+        <Insets bottom="20" left="20" right="20" top="20" />
+    </padding>
     <left>
-        <VBox>
-            <Label text="Registrar Autor" />
-            <TextField fx:id="txtIdAutor" promptText="ID Autor" />
-            <TextField fx:id="txtNombre" promptText="Nombre" />
-            <TextField fx:id="txtApellido" promptText="Apellido" />
-            <TextField fx:id="txtNacionalidad" promptText="Nacionalidad" />
-            <TextArea fx:id="txtBiografia" promptText="Biografía" />
-            <HBox>
-                <Button text="Guardar" onAction="#handleGuardar" />
-                <Button text="Limpiar" onAction="#handleLimpiar" />
-            </HBox>
-            <HBox>
-                <Button text="Modificar" onAction="#handleActualizarRegistro" />
-                <Button text="Eliminar" onAction="#handleEliminar" />
-            </HBox>
+        <VBox maxWidth="300" minWidth="300" spacing="10">
+            <padding>
+                <Insets right="20" />
+            </padding>
+            <Label style="-fx-font-size: 18; -fx-font-weight: bold;" text="Registrar Autores" />         
+            <TextField fx:id="txtIdAutor" promptText="ID Autor" />        
+            <TextField fx:id="txtNombreAutor" promptText="Nombre" />
+            <TextField fx:id="txtApellidoAutor" promptText="Apellido" />
+            <TextField fx:id="txtNacionalidad" promptText="Nacionalidad" />           
+            <TextField fx:id="txtBiografia" promptText="Biografia" />  
+            <HBox spacing="10">
+                <Button onAction="#handleGuardar" prefWidth="120" text="Guardar" />
+                <Button onAction="#handleLimpiar" prefWidth="120" text="Limpiar" />
+            </HBox>      
             <Label fx:id="lblMensaje" />
         </VBox>
     </left>
     <center>
-        <VBox>
-            <Label text="Lista de Autores" />
-            <TableView fx:id="tablaAutores">
+        <VBox spacing="10">
+            <Label style="-fx-font-size: 18; -fx-font-weight: bold;" text="Lista de Autores" />
+            <HBox spacing="10" />
+            <TableView fx:id="tablaAutores" prefHeight="386.0" prefWidth="835.0">
                 <columns>
-                    <TableColumn text="ID">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="idAutor" />
-                        </cellValueFactory>
-                    </TableColumn>
-                    <TableColumn text="Nombre">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="nombreAutor" />
-                        </cellValueFactory>
-                    </TableColumn>
-                    <TableColumn text="Apellido">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="apellidoAutor" />
-                        </cellValueFactory>
-                    </TableColumn>
-                    <TableColumn text="Nacionalidad">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="nacionalidad" />
-                        </cellValueFactory>
-                    </TableColumn>
-                    <TableColumn text="Biografía">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="biografia" />
-                        </cellValueFactory>
-                    </TableColumn>
+                    <TableColumn fx:id="colId" prefWidth="63.0" text="ID" />
+                    <TableColumn fx:id="colNombre" prefWidth="142.0" text="NOMBRE" />
+                    <TableColumn fx:id="colApellido" prefWidth="160.0" text="APELLIDO" />
+                    <TableColumn fx:id="colNacionalidad" prefWidth="162.0" text="NACIONALIDAD" />
+                    <TableColumn fx:id="colBiografia" prefWidth="293.0" text="BIOGRAFIA" />
                 </columns>
             </TableView>
-            <HBox>
-                <Button text="Actualizar Tabla" onAction="#handleActualizar" />
-                <Button text="Volver al Menú" onAction="#handleVolver" />
-            </HBox>
+            <Button onAction="#handleActualizar" prefHeight="25.0" prefWidth="827.0" text="Actualizar Tabla" />
+            <Button onAction="#handleVolver" prefHeight="25.0" prefWidth="858.0" text="Volver al Menú" />
         </VBox>
     </center>
 </BorderPane>

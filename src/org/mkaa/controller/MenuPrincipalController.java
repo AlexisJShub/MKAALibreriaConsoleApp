@@ -6,7 +6,7 @@ import javafx.scene.control.Alert;
 import org.mkaa.system.Main;
 
 public class MenuPrincipalController {
-
+    
     @FXML
     private void handleAutores() {
         try {
