@@ -6,12 +6,11 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.mkaa.controller.EditorialFXController">
+<BorderPane xmlns="http://javafx.com/javafx/21.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.mkaa.controller.EditorialFXController">
     <padding>
         <Insets bottom="20" left="20" right="20" top="20" />
     </padding>
@@ -48,26 +47,14 @@
             
             <TableView fx:id="tablaEditoriales" VBox.vgrow="ALWAYS">
                 <columns>
-                    <TableColumn fx:id="colNit" prefWidth="100" text="NIT">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="nit" />
-                        </cellValueFactory>
-                    </TableColumn>
-                    <TableColumn fx:id="colNombre" prefWidth="180" text="Nombre Editorial">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="nombreEditorial" />
-                        </cellValueFactory>
-                    </TableColumn>
-                    <TableColumn fx:id="colDireccion" prefWidth="180" text="Dirección">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="direccion" />
-                        </cellValueFactory>
-                    </TableColumn>
-                    <TableColumn fx:id="colTelefono" prefWidth="120" text="Teléfono">
-                        <cellValueFactory>
-                            <PropertyValueFactory property="telefono" />
-                        </cellValueFactory>
-                    </TableColumn>
+                    <TableColumn fx:id="colNit" prefWidth="100" text="NIT" />
+                       
+                    <TableColumn fx:id="colNombre" prefWidth="180" text="Nombre Editorial" />
+                      
+                    <TableColumn fx:id="colDireccion" prefWidth="180" text="Dirección" />
+                        
+                    <TableColumn fx:id="colTelefono" prefWidth="120" text="Teléfono" />
+                      
                 </columns>
             </TableView>
             

@@ -29,33 +29,36 @@ public class EditorialFXController implements Initializable {
     private TextField txtTelefono;
     @FXML
     private Label lblMensaje;
-
+    
+    
+       //colCui, colNombre, colApellido, colCorreo
     @FXML
     private TableView<Editorial> tablaEditoriales;
-    @FXML
-    private TableColumn<Editorial, String> colNit;
-    @FXML
-    private TableColumn<Editorial, String> colNombre;
-    @FXML
-    private TableColumn<Editorial, String> colDireccion;
-    @FXML
-    private TableColumn<Editorial, String> colTelefono;
+    @FXML TableColumn colNit;
+    @FXML TableColumn colNombre;
+    @FXML TableColumn colDireccion;
+    @FXML TableColumn colTelefono;
 
     private final EditorialDAO editorialDAO = new EditorialDAOImpl();
     private final ObservableList<Editorial> listaEditoriales = FXCollections.observableArrayList();
-
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // Mapeo con los atributos del modelo Editorial
-        colNit.setCellValueFactory(new PropertyValueFactory<>("nit"));
-        colNombre.setCellValueFactory(new PropertyValueFactory<>("nombreEditorial"));
-        colDireccion.setCellValueFactory(new PropertyValueFactory<>("direccion"));
-        colTelefono.setCellValueFactory(new PropertyValueFactory<>("telefono"));
-
+        configurarTabla();
         cargarTabla();
         seleccionarFila();
     }
 
+    private void configurarTabla() {
+        //CellValueFactory, PropertyValueFactory
+        //Valor de fabricacion de celda, propiedad de fabrica de celda
+        colNit.setCellValueFactory(new PropertyValueFactory<Editorial, String>("nit"));
+        colNombre.setCellValueFactory(new PropertyValueFactory<Editorial, String>("nombreEditorial"));
+        colDireccion.setCellValueFactory(new PropertyValueFactory<Editorial, String>("direccion"));
+        colTelefono.setCellValueFactory(new PropertyValueFactory<Editorial, String>("telefono"));
+    }
+    
     private void cargarTabla() {
         try {
             listaEditoriales.setAll(editorialDAO.listarTodos());
