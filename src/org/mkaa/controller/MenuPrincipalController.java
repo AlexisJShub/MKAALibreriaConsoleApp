@@ -4,19 +4,26 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import org.mkaa.system.Main;
-
 //falta el extends initilize
 public class MenuPrincipalController {
-
     @FXML
-    private void handleCategoria() {
+    private void handleAutores() {
         try {
-            Main.cambiarVista("/org/mkaa/view/CategoriaView.fxml");
+            Main.cambiarVista("/org/mkaa/view/AutoresView.fxml");
         } catch (Exception e) {
-            mostrarError("Error al cargar la vista de categoria:\n" + e.getMessage());
+            mostrarError("Error al cargar la vista de AUTORES:\n" + e.getMessage());
+            e.printStackTrace();
         }
     }
-
+    @FXML
+    private void handleCategorias() {
+        try {
+            Main.cambiarVista("/org/mkaa/view/CategoriasView.fxml");
+        } catch (Exception e) {
+            mostrarError("Error al cargar la vista de CATEGORIAS:\n" + e.getMessage());
+            e.printStackTrace();
+        }
+    }
     @FXML
     private void handleNoDisponible() {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
@@ -25,12 +32,10 @@ public class MenuPrincipalController {
         alert.setContentText("Este módulo no está disponible aún.");
         alert.showAndWait();
     }
-
     @FXML
     private void handleSalir() {
         Platform.exit();
     }
-
     private void mostrarError(String mensaje) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.setTitle("Error");
@@ -38,5 +43,4 @@ public class MenuPrincipalController {
         alert.setContentText(mensaje);
         alert.showAndWait();
     }
-
 }
