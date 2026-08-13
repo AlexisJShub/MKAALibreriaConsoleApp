@@ -1,4 +1,4 @@
-package org.mkaa.systen;
+package org.mkaa.system;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

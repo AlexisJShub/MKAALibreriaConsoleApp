@@ -17,7 +17,7 @@ import org.mkaa.dao.impl.ClienteDAOImpl;
 import org.mkaa.model.Cliente;
 import org.mkaa.system.Main;
 
-public class ClienteViewController implements Initializable {
+public class ClienteFXController implements Initializable {
 
     @FXML
     private TextField txtCui;
@@ -57,12 +57,12 @@ public class ClienteViewController implements Initializable {
 
     private void seleccionarFila() {
         tablaClientes.getSelectionModel().selectedItemProperty().addListener(
-                (obs, oldSelection, newSelection) -> {
-                    if (newSelection != null) {
-                        txtCui.setText(String.valueOf(newSelection.getCui()));
-                        txtNombre.setText(newSelection.getNombre());
-                        txtApellido.setText(newSelection.getApellido());
-                        txtCorreo.setText(newSelection.getCorreoElectronico());
+                (observable, anterior, cliente) -> {
+                    if (cliente != null) {
+                        txtCui.setText(String.valueOf(cliente.getCui()));
+                        txtNombre.setText(cliente.getNombre());
+                        txtApellido.setText(cliente.getApellido());
+                        txtCorreo.setText(cliente.getCorreoElectronico());
                     }
                 });
     }
@@ -70,8 +70,10 @@ public class ClienteViewController implements Initializable {
     @FXML
     private void handleGuardar() {
         try {
-            if (txtCui.getText().isEmpty() || txtNombre.getText().isEmpty()
-                    || txtApellido.getText().isEmpty() || txtCorreo.getText().isEmpty()) {
+            if (txtCui.getText().trim().isEmpty()
+                    || txtNombre.getText().trim().isEmpty()
+                    || txtApellido.getText().trim().isEmpty()
+                    || txtCorreo.getText().trim().isEmpty()) {
                 mostrarError("Todos los campos son obligatorios.");
                 return;
             }
@@ -83,22 +85,23 @@ public class ClienteViewController implements Initializable {
             cliente.setCorreoElectronico(txtCorreo.getText().trim());
 
             if (clienteDAO.crear(cliente)) {
-                lblMensaje.setText("Cliente registrado exitosamente.");
+                lblMensaje.setText("Cliente registrado correctamente.");
                 cargarTabla();
                 limpiarFormulario();
             } else {
-                mostrarError("No se pudo registrar el cliente.");
+                mostrarError("No fue posible registrar el cliente.");
             }
         } catch (NumberFormatException e) {
-            mostrarError("El CUI debe ser un número válido.");
+            mostrarError("El CUI debe contener únicamente números.");
         } catch (Exception e) {
-            mostrarError("Error al guardar: " + e.getMessage());
+            mostrarError(e.getMessage());
         }
     }
 
     @FXML
     private void handleLimpiar() {
         limpiarFormulario();
+        tablaClientes.getSelectionModel().clearSelection();
         lblMensaje.setText("");
     }
 
@@ -113,7 +116,7 @@ public class ClienteViewController implements Initializable {
         try {
             Main.cambiarVista("/org/mkaa/view/MenuPrincipal.fxml");
         } catch (Exception e) {
-            mostrarError("Error al volver al menú: " + e.getMessage());
+            mostrarError(e.getMessage());
         }
     }
 
@@ -122,6 +125,7 @@ public class ClienteViewController implements Initializable {
         txtNombre.clear();
         txtApellido.clear();
         txtCorreo.clear();
+        txtCui.requestFocus();
     }
 
     private void mostrarError(String mensaje) {
@@ -134,9 +138,12 @@ public class ClienteViewController implements Initializable {
 
     private void configurarTabla() {
         colCui.setCellValueFactory(new PropertyValueFactory<>("cui"));
+        
         colNombre.setCellValueFactory(new PropertyValueFactory<>("nombre"));
         colApellido.setCellValueFactory(new PropertyValueFactory<>("apellido"));
         colCorreo.setCellValueFactory(new PropertyValueFactory<>("correoElectronico"));
     }
-
 }
+
+
+

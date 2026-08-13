@@ -1,6 +1,5 @@
 package org.mkaa.dao.impl;
 
-
 import java.util.ArrayList;
 import org.mkaa.model.Cliente;
 import org.mkaa.dao.ClienteDAO;
