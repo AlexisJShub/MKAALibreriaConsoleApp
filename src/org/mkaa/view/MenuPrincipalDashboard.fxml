@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ 
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+ 
+<BorderPane prefHeight="600.0" prefWidth="850.0" 
+            stylesheets="@style/menuprincipaldashboard.css" 
+            styleClass="main-dashboard"
+            xmlns="http://javafx.com/javafx/21.0.1" 
+            xmlns:fx="http://javafx.com/fxml/1" 
+            fx:controller="org.mkaa.controller.MenuPrincipalDashboardController">
+ 
+    <top>
+        <VBox styleClass="header-panel" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="25" left="30" right="30" top="25" />
+            </padding>
+            <HBox alignment="CENTER_LEFT" spacing="15">
+                <VBox alignment="CENTER" styleClass="header-icon-box">
+                    <Label styleClass="header-emoji" text="📚" />
+                </VBox>
+                <VBox spacing="2">
+                    <Label styleClass="header-title" text="MKAA Librería" />
+                    <Label styleClass="header-subtitle" text="Panel de Administración y Control" />
+                </VBox>
+            </HBox>
+        </VBox>
+    </top>
+ 
+    <center>
+        <VBox alignment="CENTER" spacing="25" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="30" left="40" right="40" top="30" />
+            </padding>
+ 
+            <HBox alignment="CENTER_LEFT">
+                <Label styleClass="section-title" text="Selecciona un módulo para gestionar:" />
+            </HBox>
+ 
+            <GridPane alignment="CENTER" hgap="20" vgap="20" VBox.vgrow="ALWAYS">
+                <columnConstraints>
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="50" />
+                    <ColumnConstraints hgrow="ALWAYS" percentWidth="50" />
+                </columnConstraints>
+                <rowConstraints>
+                    <RowConstraints percentHeight="50" vgrow="ALWAYS" />
+                    <RowConstraints percentHeight="50" vgrow="ALWAYS" />
+                </rowConstraints>
+ 
+                <VBox alignment="CENTER" spacing="12" styleClass="module-card" GridPane.columnIndex="0" GridPane.rowIndex="0">
+                    <Label styleClass="card-icon" text="👥" />
+                    <VBox alignment="CENTER" spacing="2">
+                        <Label styleClass="card-title" text="Gestión de Clientes" />
+                        <Label styleClass="card-description" text="Registro y catálogo de compradores" />
+                    </VBox>
+                    <Button onAction="#handleClientes" prefHeight="38" prefWidth="180" styleClass="btn-card" text="Ingresar a Clientes" />
+                </VBox>
+ 
+                <VBox alignment="CENTER" spacing="12" styleClass="module-card" GridPane.columnIndex="1" GridPane.rowIndex="0">
+                    <Label styleClass="card-icon" text="✍️" />
+                    <VBox alignment="CENTER" spacing="2">
+                        <Label styleClass="card-title" text="Gestión de Autores" />
+                        <Label styleClass="card-description" text="Directorio de escritores y biografías" />
+                    </VBox>
+                    <Button onAction="#handleAutores" prefHeight="38" prefWidth="180" styleClass="btn-card" text="Ingresar a Autores" />
+                </VBox>
+ 
+                <VBox alignment="CENTER" spacing="12" styleClass="module-card" GridPane.columnIndex="0" GridPane.rowIndex="1">
+                    <Label styleClass="card-icon" text="🏷️" />
+                    <VBox alignment="CENTER" spacing="2">
+                        <Label styleClass="card-title" text="Categorías" />
+                        <Label styleClass="card-description" text="Clasificación de géneros literarios" />
+                    </VBox>
+                    <Button onAction="#handleCategorias" prefHeight="38" prefWidth="180" styleClass="btn-card" text="Ver Categorías" />
+                </VBox>
+ 
+                <VBox alignment="CENTER" spacing="12" styleClass="module-card" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                    <Label styleClass="card-icon" text="🏢" />
+                    <VBox alignment="CENTER" spacing="2">
+                        <Label styleClass="card-title" text="Editoriales" />
+                        <Label styleClass="card-description" text="Casas editoras y distribuidores" />
+                    </VBox>
+                    <Button onAction="#handleEditoriales" prefHeight="38" prefWidth="180" styleClass="btn-card" text="Ver Editoriales" />
+                </VBox>
+            </GridPane>
+        </VBox>
+    </center>
+ 
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" styleClass="footer-panel" BorderPane.alignment="CENTER">
+            <padding>
+                <Insets bottom="15" left="30" right="30" top="15" />
+            </padding>
+            <Button fx:id="btnCerrarSesion" onAction="#handleSalir" prefHeight="38" prefWidth="140" styleClass="btn-danger" text="🚪 Cerrar Sesión" />
+        </HBox>
+    </bottom>
+</BorderPane>
+ 
